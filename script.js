@@ -485,8 +485,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 const currentVal = Math.floor(easeProgress * (target - startVal) + startVal);
                 
                 // Formatting specific variables
-                if (counter.parentElement.classList.contains("metric-value-container") && counter.getAttribute("data-target") === "872") {
-                    // Render CGPA as float (872 -> 8.72)
+                if (counter.parentElement.classList.contains("metric-value-container") && counter.getAttribute("data-target") === "880") {
+                    // Render CGPA correctly as 8.8 out of 10 (880 is the animation target)
+                    counter.textContent = (currentVal / 100).toFixed(1);
+                } else if (counter.parentElement.classList.contains("metric-value-container") && counter.getAttribute("data-target") === "872") {
+                    // Legacy formatting for 8.72 CGPA, if used elsewhere
                     counter.textContent = (currentVal / 100).toFixed(2);
                 } else {
                     counter.textContent = currentVal;
